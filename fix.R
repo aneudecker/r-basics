@@ -1,2 +1,2 @@
-libs <- .libPaths()
-.libPaths(new = libs[!grepl("Lehre", libs)])
+lib <- .libPaths()
+.libPaths(new = lib[!grepl("Lehre", lib)])
