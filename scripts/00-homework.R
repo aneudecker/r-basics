@@ -1,8 +1,8 @@
 #' -------------------------------------------------------------------
-#' homework.R
+#' 00-homework.R
 #'
 #' author: Andreas Neudecker
-#' e-mail: andreas.neudecker@uni-jena.de
+#' e-mail: andreas.neudecker@inwt-statistics.de
 #' -------------------------------------------------------------------
 
 
@@ -26,7 +26,7 @@
 # - Select all rows where nbaffairs is greater than 0
 # - Select the variable ocupation for all females with a child
 
-# Multiple means -----------------------------------------------------
+# Multiple means (optional) ------------------------------------------
 # - Calculate mean affairs for all levels of religousness (1 anti to 5
 # very) Use apply or a for-loop.
 # - Calculate mean affairs for all levels of rating of marriage (1
