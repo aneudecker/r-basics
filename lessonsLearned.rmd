@@ -1,0 +1,65 @@
+---
+title: "What did I learn in my first R course"
+author: "Andreas Neudecker"
+date: "21 Juni 2019"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Inspect data set
+
+Summary of dataset `lang`
+```{r, echo = FALSE}
+library(readr)
+lang <- read_csv(
+  "data/lang.csv",
+  col_names = c("Month", "R", "Python", "Matlab"), 
+  col_types = cols(Month = col_date(format = "%Y-%m")), 
+  skip = 3)
+
+summary(lang)
+```
+
+Now let's look at a histogram of variable  `R`
+
+```{r, echo = FALSE, message = FALSE}
+library(ggplot2)
+
+ggplot(lang, aes(x = R)) +
+  geom_histogram() +
+  xlab("Popularity of language R") +
+  ylab("Count") +
+  ggtitle("A Histogram")
+```
+
+## Long vs. Wide format
+
+Object `lang` is in wide format. That's not so cool for ggplot2. Let's change that with the `tidyr` package.
+
+```{r}
+library(tidyr)
+
+dataLong <- gather(lang, key = "Lang", value = "Count",
+                   R:Matlab)
+
+summary(dataLong)
+```
+
+Use with ggplot2
+
+```{r}
+ggplot(dataLong, aes(x = Month, y = Count, col = Lang, 
+                     group = Lang)) +
+  geom_line()
+```
+
+## Produce nice tables
+
+```{r}
+library(knitr)
+library(dplyr)
+kable(slice(dataLong, 1:10), caption = "First Rows of the dataset")
+```
